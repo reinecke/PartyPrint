@@ -1,3 +1,4 @@
+import os
 import Image
 import printerConfig
 
@@ -6,7 +7,8 @@ v_size = 816
 v_offset = 0
 
 def background_img():
-    return Image.open('overlay.%s.png'%(printerConfig.CLIENT_KEY))
+    overlay_path = os.path.join(printerConfig.DATA_DIR, "overlay.png")
+    return Image.open(overlay_path)
 
 def add_overlay(src_path, dest_path):
     '''
