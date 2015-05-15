@@ -8,11 +8,13 @@ import os
 # TODO: Move to common config file
 USER = "DB_USERNAME"
 PASS = "DB_PASSWORD"
+DB_POOL_RECYCLE = 25200 # recycle the db connection every 7 hours
 
 engine_url = "mysql://%s:%s@mysql.myhost.com/database_name"
 print "database at:", engine_url%(USER, "****")
 
-engine = create_engine(engine_url%(USER, PASS), convert_unicode=True)
+engine = create_engine(engine_url%(USER, PASS), convert_unicode=True,
+        pool_recycle=DB_POOL_RECYCLE)
 #engine.execute("USE partyprint")
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
